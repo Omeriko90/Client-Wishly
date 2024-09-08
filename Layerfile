@@ -12,4 +12,4 @@ COPY . .
 RUN npm install
 
 RUN BACKGROUND npm run dev
-EXPOSE WEBSITE http://localhost:3000
+EXPOSE WEBSITE http://localhost:5173
