@@ -8,6 +8,7 @@ function PublicList() {
   const navigate = useNavigate();
   const id = pathname.split("/")[3];
   const { data: list } = useGetList(id);
+
   const handleBack = () => navigate("/");
   console.log(id, list);
   return (
