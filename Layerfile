@@ -11,5 +11,5 @@ ENV NODE_OPTIONS=--max-old-space-size=8192
 COPY . .
 RUN npm install
 
-RUN BACKGROUND npm start
+RUN BACKGROUND npm run dev
 EXPOSE WEBSITE http://localhost:3000
