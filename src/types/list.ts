@@ -4,4 +4,5 @@ export default interface List {
   description: string;
   owner: string;
   date: string;
+  type: string;
 }

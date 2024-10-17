@@ -1,6 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-import GiftList from "../GiftList";
+import WishList from "../WishList";
 import useGetList from "src/hooks/useGetList";
 
 function PublicList() {
@@ -21,7 +21,7 @@ function PublicList() {
       }}
     >
       <Typography variant="h1">{list?.title}</Typography>
-      <GiftList />
+      <WishList listId={id} />
       <Button variant="contained" color="primary" onClick={handleBack}>
         Back
       </Button>

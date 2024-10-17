@@ -6,6 +6,8 @@ import FormDateInput from "src/components/common/Form/FormDateInput";
 
 interface ListFormProps {
   defaultValues: List;
+  onSubmit: (data: List) => void;
+  header: JSX.Element;
 }
 
 const initialValues: Partial<List> = {
@@ -15,8 +17,8 @@ const initialValues: Partial<List> = {
 };
 
 function ListForm(props: ListFormProps) {
-  const { defaultValues } = props;
-  const { control, handleSubmit, watch } = useForm<Partial<List>>({
+  const { defaultValues, onSubmit, header = null } = props;
+  const { control, handleSubmit } = useForm<List>({
     defaultValues: defaultValues
       ? {
           title: defaultValues?.title,
@@ -25,11 +27,21 @@ function ListForm(props: ListFormProps) {
         }
       : initialValues,
   });
-  const form = watch();
-  console.log(form, defaultValues?.title);
+
   return (
-    <Box>
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <Box
+      sx={{
+        display: "flex",
+        width: "100%",
+      }}
+    >
+      <form
+        style={{
+          width: "100%",
+        }}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        {header}
         <Box>
           <FormTextInput
             control={control}
@@ -37,6 +49,7 @@ function ListForm(props: ListFormProps) {
             name="title"
             required
             label="Title"
+            sx={{ marginBottom: 2 }}
           />
           <FormTextInput
             control={control}
@@ -44,6 +57,7 @@ function ListForm(props: ListFormProps) {
             required
             fullWidth
             label="Description"
+            sx={{ marginBottom: 2 }}
           />
           <FormDateInput control={control} name="date" fullWidth required />
         </Box>

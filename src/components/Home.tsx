@@ -7,6 +7,8 @@ function Home() {
 
   const handleRoute1 = () => naviagete("/public/list/66c98a6b262f8f3e5840e608");
   const handleRoute2 = () => naviagete("/admin/lists");
+  const handleRoute3 = () => naviagete("/login");
+
   return (
     <>
       <div>
@@ -19,6 +21,9 @@ function Home() {
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
+        <Button onClick={handleRoute3} variant="contained" color="primary">
+          Login
+        </Button>
         <Button onClick={handleRoute1} variant="contained" color="primary">
           Go to Route1
         </Button>

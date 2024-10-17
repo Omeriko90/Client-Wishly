@@ -1,11 +1,11 @@
 import { useQuery, useQueryClient } from "react-query";
-import Api from "src/api/index";
+import api from "src/api/index";
 import Wish from "src/types/wish";
 
 function useGetListWishes(listId: string) {
   const queryCleint = useQueryClient();
   return useQuery(["list-wishes", listId], async () => {
-    const wishes = await Api.getListWishes(listId);
+    const wishes = await api.getListWishes(listId);
     wishes.data.forEach((wish: Wish) => {
       queryCleint.setQueryData(["wish", wish._id], wish);
     });
