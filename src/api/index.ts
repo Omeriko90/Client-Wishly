@@ -1,11 +1,10 @@
 import Wish from "src/types/wish";
 import api from "./api";
-import User from "src/types/user";
 import List from "src/types/list";
 import { AxiosResponse } from "axios";
 
 interface ApiType {
-  getUserLists: (userId: string) => Promise<AxiosResponse<User[]>>;
+  getUserLists: (userId: string) => Promise<AxiosResponse<List[]>>;
   getList: (listId: string) => Promise<AxiosResponse<List>>;
   getListWishes: (listId: string) => Promise<AxiosResponse<Wish[]>>;
   updateListDetails: (

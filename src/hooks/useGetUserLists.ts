@@ -7,7 +7,7 @@ import List from "src/types/list";
 function useGetUserLists() {
   const queryCleint = useQueryClient();
   const userId = useSelector((state: RootState) => state.users.userId);
-  console.log(userId);
+
   return useQuery(["user-lists", userId], async () => {
     const lists = await api.getUserLists(userId);
     lists?.data?.forEach((list: List) => {
