@@ -17,7 +17,7 @@ function UserEventCard(props: UserEventCardProps) {
   const { listId } = props;
   const navigate = useNavigate();
   const { data: list } = useGetList(listId);
-  const { title, description } = list;
+  const { title, description } = list || {};
 
   const handleEditClick = () => {
     navigate(`/admin/list/${listId}`);

@@ -4,7 +4,7 @@ interface Props {
   color?: string;
 }
 
-function Gift(props: Props) {
+function GiftIcon(props: Props) {
   const { width, height, color } = props;
   return (
     <svg
@@ -21,4 +21,4 @@ function Gift(props: Props) {
   );
 }
 
-export default Gift;
+export default GiftIcon;

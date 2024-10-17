@@ -1,6 +1,6 @@
 import { Typography, Card, CardContent, Box } from "@mui/material";
 import { default as WishType } from "src/types/wish";
-import Gift from "src/components/Icons/gift";
+import GiftIcon from "src/components/Icons/GiftIcon";
 
 interface WishProps {
   wish: WishType;
@@ -47,7 +47,7 @@ function Wish(props: WishProps) {
             {imageUrl ? (
               <img src={imageUrl} />
             ) : (
-              <Gift width="80" height="80" />
+              <GiftIcon width="80" height="80" />
             )}
           </Box>
           <Box
