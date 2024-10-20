@@ -101,7 +101,7 @@ function WishDetailsDialog(props: WishDetailsDialogProps) {
               unmountOnExit
             >
               <Box>
-                <WishSelectForm wishId={wish?._id} onClose={onClose} />
+                <WishSelectForm wishId={wish?._id || ""} onClose={onClose} />
               </Box>
             </Collapse>
           </>
