@@ -1,28 +1,34 @@
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
-
-interface FormValues {
+import useSelectWish from "src/hooks/useSelectWIsh";
+export interface SelectWishFormValues {
   fullName: string;
   email: string;
 }
 
 interface WishFormProps {
-  wishId?: string;
+  wishId: string;
+  onClose: () => void;
 }
 
 function WishSelectForm(props: WishFormProps) {
-  const { wishId } = props;
-  const { control, handleSubmit } = useForm<FormValues>({
+  const { wishId, onClose } = props;
+  const { control, handleSubmit } = useForm<SelectWishFormValues>({
     defaultValues: {
       fullName: "",
       email: "",
     },
   });
 
-  const handleSubmitForm = (values: FormValues) => {
-    console.log(values, wishId);
+  const handleSelectSuccess = () => {
+    window.confetti({ zIndex: 1301 });
+    setTimeout(() => onClose(), 1000);
   };
-  if (!wishId) return null;
+  const { mutate: selectWish } = useSelectWish(wishId, handleSelectSuccess);
+
+  const handleSubmitForm = (values: SelectWishFormValues) => {
+    selectWish(values);
+  };
 
   return (
     <form onSubmit={handleSubmit(handleSubmitForm)}>

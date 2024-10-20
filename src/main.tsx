@@ -6,9 +6,11 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
 import store from "./store.ts";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient();
 const theme = createTheme();
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
@@ -16,6 +18,7 @@ createRoot(document.getElementById("root")!).render(
         <ThemeProvider theme={theme}>
           <App />
         </ThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Provider>
   </StrictMode>

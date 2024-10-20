@@ -6,21 +6,23 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  IconButton,
   Theme,
   Typography,
 } from "@mui/material";
 import { useState } from "react";
 import useGetWish from "src/hooks/useGetWish";
 import WishSelectForm from "./WishSelectForm";
-
+import IconButton from "src/components/common/IconButton";
+import useIsMobile from "src/hooks/useIsMobile";
 interface WishDetailsDialogProps {
   onClose: () => void;
   wishId: string;
+  withUserSelection?: boolean;
 }
 
 function WishDetailsDialog(props: WishDetailsDialogProps) {
-  const { onClose, wishId } = props;
+  const { onClose, wishId, withUserSelection } = props;
+  const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(false);
   const wish = useGetWish(wishId);
 
@@ -29,7 +31,13 @@ function WishDetailsDialog(props: WishDetailsDialogProps) {
   };
 
   return (
-    <Dialog maxWidth="md" fullWidth open onClose={onClose}>
+    <Dialog
+      maxWidth="md"
+      fullScreen={isMobile}
+      fullWidth={isMobile}
+      open
+      onClose={onClose}
+    >
       <Box
         sx={{
           display: "flex",
@@ -65,34 +73,39 @@ function WishDetailsDialog(props: WishDetailsDialogProps) {
             </a>
           </Box>
         </Box>
-        <Box
-          sx={{
-            marginBlock: 2,
-            display: "flex",
-            justifyContent: "end",
-            alignItems: "center",
-          }}
-        >
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={handleSelectWishClick}
-          >
-            Select Wish
-          </Button>
-        </Box>
-        <Collapse
-          in={isOpen}
-          timeout="auto"
-          sx={{
-            borderTop: ({ palette }: Theme) => `1px solid ${palette.divider}`,
-          }}
-          unmountOnExit
-        >
-          <Box>
-            <WishSelectForm wishId={wish?._id} />
-          </Box>
-        </Collapse>
+        {withUserSelection && (
+          <>
+            <Box
+              sx={{
+                marginBlock: 2,
+                display: "flex",
+                justifyContent: "end",
+                alignItems: "center",
+              }}
+            >
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={handleSelectWishClick}
+              >
+                Select Wish
+              </Button>
+            </Box>
+            <Collapse
+              in={isOpen}
+              timeout="auto"
+              sx={{
+                borderTop: ({ palette }: Theme) =>
+                  `1px solid ${palette.divider}`,
+              }}
+              unmountOnExit
+            >
+              <Box>
+                <WishSelectForm wishId={wish?._id} onClose={onClose} />
+              </Box>
+            </Collapse>
+          </>
+        )}
       </DialogContent>
     </Dialog>
   );

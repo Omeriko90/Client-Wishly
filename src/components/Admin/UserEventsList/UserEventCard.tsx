@@ -19,12 +19,15 @@ function UserEventCard(props: UserEventCardProps) {
   const { data: list } = useGetList(listId);
   const { title, description } = list || {};
 
-  const handleEditClick = () => {
-    navigate(`/admin/list/${listId}`);
+  const handleEditClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    navigate(`/admin/list/${listId}/edit`);
   };
 
+  const handleViewClick = () => navigate(`/admin/list/${listId}`);
+
   return (
-    <Card raised id={"card"}>
+    <Card raised id={"card"} onClick={handleViewClick}>
       <CardContent className="card-content">
         <Box className="text-container">
           <Typography variant="body1" fontWeight={600}>

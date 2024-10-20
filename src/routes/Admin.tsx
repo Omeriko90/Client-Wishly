@@ -1,10 +1,9 @@
 import { Box, Theme } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
+import AddList from "src/components/Admin/AddList";
 import EditList from "src/components/Admin/EditList";
 import ListDetails from "src/components/Admin/ListDetails";
-
 import UserEventsList from "src/components/Admin/UserEventsList";
-import PublicList from "src/components/Public/PublicList";
 
 function Admin() {
   return (
@@ -18,7 +17,7 @@ function Admin() {
       }}
     >
       <Routes>
-        <Route path="/list/add" element={<PublicList />} />
+        <Route path="/list/add" element={<AddList />} />
         <Route path="/list/:id" element={<ListDetails />} />
         <Route path="/list/:id/edit" element={<EditList />} />
         <Route path="/lists" element={<UserEventsList />} />

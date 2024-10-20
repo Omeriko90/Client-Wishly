@@ -8,9 +8,14 @@ import WishDetailsDialog from "./WishDetailsDialog";
 interface WishListProps {
   listId: string;
   filterValue?: string;
+  withUserSelection?: boolean;
 }
 
-function WishList({ listId, filterValue = "" }: WishListProps) {
+function WishList({
+  listId,
+  withUserSelection,
+  filterValue = "",
+}: WishListProps) {
   const [selectedWish, setSelectedWish] = useState<string | null>(null);
 
   const { data: wishes } = useGetListWishes(listId);
@@ -109,7 +114,6 @@ function WishList({ listId, filterValue = "" }: WishListProps) {
   const handleWhishClick = (id: string) => {
     setSelectedWish(id);
   };
-
   return (
     <>
       <Grid
@@ -143,6 +147,7 @@ function WishList({ listId, filterValue = "" }: WishListProps) {
         <WishDetailsDialog
           wishId={selectedWish}
           onClose={() => setSelectedWish(null)}
+          withUserSelection={withUserSelection}
         />
       )}
     </>

@@ -1,18 +1,19 @@
-import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import useGetList from "src/hooks/useGetList";
 import { ArrowBack, CalendarMonth, Edit } from "@mui/icons-material";
 import { useState } from "react";
 import WishList from "src/components/WishList";
 import ClearIcon from "@mui/icons-material/Clear";
+import IconButton from "src/components/common/IconButton";
+import dayjs from "dayjs";
 
 function ListDetails() {
   const { pathname } = useLocation();
-  const naviagete = useNavigate();
+  const navigate = useNavigate();
   const id = pathname.split("/")[3];
   const { data: list, isLoading } = useGetList(id);
   const [search, setSearch] = useState("");
-  //   const { data: wishes } = useGetListWishes(id);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -29,8 +30,8 @@ function ListDetails() {
   };
 
   const handleClearClick = () => setSearch("");
-  const handleBackClick = () => naviagete("/admin/lists");
-  const handleEditClick = () => naviagete(`/admin/list/${id}/edit`);
+  const handleBackClick = () => navigate("/admin/lists");
+  const handleEditClick = () => navigate(`/admin/list/${id}/edit`);
   return (
     <Box sx={{ width: "850px" }}>
       <Box
@@ -85,7 +86,8 @@ function ListDetails() {
           >
             <CalendarMonth sx={{ marginInlineEnd: 1 }} />
             <Typography variant="h6">
-              {list.date || "No Date selected"}
+              {dayjs(list.date).format("DD/MM/YYYY HH:mm") ||
+                "No Date selected"}
             </Typography>
           </Box>
         </Box>

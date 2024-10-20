@@ -25,8 +25,8 @@ const Signup = () => {
     if (!emailRegex.test(values.email)) {
       return setError("email", { type: "custom", message: "Invalid Email" });
     }
-    console.log(values);
   };
+
   return (
     <Box
       sx={{

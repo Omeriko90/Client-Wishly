@@ -10,18 +10,18 @@ function PublicList() {
   const { data: list } = useGetList(id);
 
   const handleBack = () => navigate("/");
-  console.log(id, list);
+
   return (
     <Box
       sx={{
-        width: 850,
+        width: "100%",
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
       }}
     >
       <Typography variant="h1">{list?.title}</Typography>
-      <WishList listId={id} />
+      <WishList listId={id} withUserSelection />
       <Button variant="contained" color="primary" onClick={handleBack}>
         Back
       </Button>

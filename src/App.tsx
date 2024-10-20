@@ -7,8 +7,24 @@ import AppHeader from "src/components/AppHeader";
 import { Container } from "@mui/material";
 import Login from "src/components/Public/Login";
 import Signup from "src/components/Public/SignUp";
+import { useQueryClient } from "react-query";
+import { useEffect } from "react";
 
 function App() {
+  const queryClient = useQueryClient();
+
+  const handleWindowSizeChange = () => {
+    queryClient.setQueryData("isMobile", window.innerWidth <= 768);
+  };
+
+  useEffect(() => {
+    handleWindowSizeChange();
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
   return (
     <>
       <AppHeader />

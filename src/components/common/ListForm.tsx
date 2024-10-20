@@ -1,29 +1,40 @@
-import { Box } from "@mui/material";
+import { Box, Button, Theme, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import List from "src/types/list";
 import FormTextInput from "src/components/common/Form/FormTextInput";
 import FormDateInput from "src/components/common/Form/FormDateInput";
+import dayjs from "dayjs";
 
 interface ListFormProps {
-  defaultValues: List;
+  defaultValues?: List;
   onSubmit: (data: List) => void;
-  header: JSX.Element;
+  onCancel?: () => void;
+  cancelBtnLabel?: string;
+  saveBtnLabel?: string;
+  formTitle: string;
 }
 
 const initialValues: Partial<List> = {
   title: "Gift List",
   description: "This is a list of gifts",
-  date: new Date().toISOString(),
+  date: dayjs(new Date()),
 };
 
 function ListForm(props: ListFormProps) {
-  const { defaultValues, onSubmit, header = null } = props;
+  const {
+    defaultValues,
+    onSubmit,
+    onCancel,
+    cancelBtnLabel,
+    saveBtnLabel,
+    formTitle,
+  } = props;
   const { control, handleSubmit } = useForm<List>({
     defaultValues: defaultValues
       ? {
           title: defaultValues?.title,
           description: defaultValues?.description,
-          date: defaultValues?.date,
+          date: dayjs(defaultValues?.date),
         }
       : initialValues,
   });
@@ -41,7 +52,50 @@ function ListForm(props: ListFormProps) {
         }}
         onSubmit={handleSubmit(onSubmit)}
       >
-        {header}
+        <Box>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "end",
+              alignItems: "center",
+            }}
+          >
+            {onCancel && (
+              <Button
+                size="large"
+                variant="text"
+                onClick={onCancel}
+                sx={{
+                  marginInlineEnd: 1,
+                  color: "#7a7a7a",
+                  "&:hover": {
+                    color: "#7a7a7a",
+                    backgroundColor: "#c3c3c33b",
+                  },
+                }}
+              >
+                {cancelBtnLabel || "Cancel"}
+              </Button>
+            )}
+            <Button
+              type="submit"
+              size="large"
+              variant="contained"
+              color="primary"
+            >
+              {saveBtnLabel || "Save"}
+            </Button>
+          </Box>
+          <Typography
+            variant="h2"
+            sx={{
+              marginBottom: (theme: Theme) =>
+                theme.breakpoints.down("lg") ? 2 : 1,
+            }}
+          >
+            {formTitle}
+          </Typography>
+        </Box>
         <Box>
           <FormTextInput
             control={control}

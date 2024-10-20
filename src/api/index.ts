@@ -7,6 +7,7 @@ interface ApiType {
   getUserLists: (userId: string) => Promise<AxiosResponse<List[]>>;
   getList: (listId: string) => Promise<AxiosResponse<List>>;
   getListWishes: (listId: string) => Promise<AxiosResponse<Wish[]>>;
+  addList: (newList: List) => Promise<AxiosResponse<List>>;
   updateListDetails: (
     listId: string,
     list: List
@@ -15,6 +16,11 @@ interface ApiType {
     listId: string,
     wishes: Wish[]
   ) => Promise<AxiosResponse<Wish[]>>;
+  selectWish: (
+    wishId: string,
+    email: string,
+    name: string
+  ) => Promise<AxiosResponse<Wish>>;
   deleteListWishes: (
     listId: string,
     wishIds: string[]
@@ -25,6 +31,9 @@ const Api: ApiType = {
   getUserLists: (userId: string) => api.get(`/user/${userId}/lists`),
   getList: (listId: string) => api.get(`/list/${listId}`),
   getListWishes: (listId: string) => api.get(`/list/${listId}/wishes`),
+  addList: (newList: List) => api.post("/list", { list: newList }),
+  selectWish: (wishId: string, email: string, fullName: string) =>
+    api.put(`/public/wish/${wishId}/select`, { email, fullName }),
   updateListDetails: (listId: string, list: List) =>
     api.put(`/list/${listId}`, list),
   updateListWishes: (listId: string, wishes: Wish[]) =>

@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 
 function Home() {
-  const naviagete = useNavigate();
+  const navigate = useNavigate();
 
-  const handleRoute1 = () => naviagete("/public/list/66c98a6b262f8f3e5840e608");
-  const handleRoute2 = () => naviagete("/admin/lists");
-  const handleRoute3 = () => naviagete("/login");
+  const handleRoute1 = () => navigate("/public/list/66c98a6b262f8f3e5840e608");
+  const handleRoute2 = () => navigate("/admin/lists");
+  const handleRoute3 = () => navigate("/login");
 
   return (
     <>

@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogContent,
-  IconButton,
-  Theme,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import useGetList from "src/hooks/useGetList";
 import ListForm from "src/components/common/ListForm";
@@ -21,12 +13,15 @@ import useUpdateListWishes from "src/hooks/useUpdateListWishes";
 import useDeleteListWishes from "src/hooks/useDeleteListWishes";
 import useUpdateListDetails from "src/hooks/useUpdateListDetails";
 import List from "src/types/list";
+import IconButton from "src/components/common/IconButton";
+import useIsMobile from "src/hooks/useIsMobile";
 
 function EditList() {
   const { pathname } = useLocation();
-  const naviagete = useNavigate();
+  const navigate = useNavigate();
   const id = pathname.split("/")[3];
   const { data: list } = useGetList(id);
+  const isMobile = useIsMobile();
   const { data: wishes } = useGetListWishes(id);
   const [openDialog, setOpenDialog] = useState(false);
   const { mutateAsync: updateWishes } = useUpdateListWishes(id);
@@ -35,7 +30,7 @@ function EditList() {
 
   const handleCloseDialog = () => setOpenDialog(false);
   const handleAddClick = () => setOpenDialog(true);
-  const backToList = () => naviagete(`/admin/list/${id}`);
+  const backToList = () => navigate(`/admin/list/${id}`);
 
   const handleWishesChange = async (
     data: FormValues,
@@ -83,50 +78,8 @@ function EditList() {
               <ListForm
                 defaultValues={list}
                 onSubmit={handleSaveUpdate}
-                header={
-                  <Box>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "end",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Button
-                        size="large"
-                        variant="text"
-                        onClick={backToList}
-                        sx={{
-                          marginInlineEnd: 1,
-                          color: "#7a7a7a",
-                          "&:hover": {
-                            color: "#7a7a7a",
-                            backgroundColor: "#c3c3c33b",
-                          },
-                        }}
-                      >
-                        cancel
-                      </Button>
-                      <Button
-                        type="submit"
-                        size="large"
-                        variant="contained"
-                        color="primary"
-                      >
-                        Save
-                      </Button>
-                    </Box>
-                    <Typography
-                      variant="h2"
-                      sx={{
-                        marginBottom: (theme: Theme) =>
-                          theme.breakpoints.down("lg") ? 2 : 1,
-                      }}
-                    >
-                      Edit List
-                    </Typography>
-                  </Box>
-                }
+                formTitle="Edit List"
+                onCancel={backToList}
               />
             </Box>
             <Box>
@@ -135,12 +88,11 @@ function EditList() {
                   display: "flex",
                   justifyContent: "space-between",
                   width: "100%",
+                  alignItems: "center",
+                  marginBottom: 2,
                 }}
               >
-                <Typography
-                  variant="h3"
-                  sx={{ marginBottom: 2, textAlign: "start" }}
-                >
+                <Typography variant="h3" sx={{ textAlign: "start" }}>
                   Wishes
                 </Typography>
                 <Box py={2}>
@@ -160,7 +112,12 @@ function EditList() {
         )}
       </Box>
       {openDialog && (
-        <Dialog open maxWidth="lg" onClose={handleCloseDialog}>
+        <Dialog
+          open
+          maxWidth="lg"
+          fullScreen={isMobile}
+          onClose={handleCloseDialog}
+        >
           <Box
             sx={{
               display: "flex",

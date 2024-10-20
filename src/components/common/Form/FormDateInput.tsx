@@ -41,11 +41,9 @@ function FormDateInput<T extends FieldValues>(props: FormDateInputProps<T>) {
               {...props}
               slotProps={{ field: { sx: { width: "100%" } } }}
               label="Date"
-              views={["year", "month", "day"]}
-              format="DD/MM/YYYY"
+              views={["year", "month", "day", "hours", "minutes"]}
+              format="DD/MM/YYYY hh:mm"
               viewRenderers={{
-                hours: null,
-                minutes: null,
                 seconds: null,
               }}
             />

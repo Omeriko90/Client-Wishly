@@ -4,23 +4,25 @@ import { useState } from "react";
 import useGetUserLists from "src/hooks/useGetUserLists";
 import { default as ListType } from "src/types/list";
 import UserEventCard from "./UserEventCard";
+import { useNavigate } from "react-router-dom";
 
 function UserEventsList() {
   const { data: lists } = useGetUserLists();
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
   const handleAddClick = () => {
-    console.log("Add list");
+    navigate("/admin/list/add");
   };
 
   const userLists = search
     ? lists?.filter((list: ListType) => list.title.includes(search))
     : lists;
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <Box sx={{ marginBottom: 2 }}>
         <Typography variant="h1" color="#2C404F">
           Your lists

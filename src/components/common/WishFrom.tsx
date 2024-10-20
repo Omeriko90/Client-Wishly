@@ -1,9 +1,9 @@
 import { Delete } from "@mui/icons-material";
-import { Box, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 import { Control } from "react-hook-form";
 import FormTextInput from "src/components/common/Form/FormTextInput";
 import { FormValues } from "./WishesListForm";
-
+import IconButton from "src/components/common/IconButton";
 interface WishFormProps {
   index: number;
   onDelete: () => void;
