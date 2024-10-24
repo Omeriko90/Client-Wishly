@@ -41,10 +41,10 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/public/*" element={<PublicList />} />
-            <Route path="/admin/*" element={<Admin />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/public/*" element={<PublicList />} />
+            <Route path="/admin/*" element={<Admin />} />
           </Routes>
         </BrowserRouter>
       </Container>
