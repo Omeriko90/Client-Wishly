@@ -6,7 +6,7 @@ function Home() {
   const navigate = useNavigate();
 
   const handleRoute1 = () => navigate("/public/list/66c98a6b262f8f3e5840e608");
-  const handleRoute2 = () => navigate("/admin/lists");
+  const handleRoute2 = () => navigate("/signUp");
   const handleRoute3 = () => navigate("/login");
 
   return (
@@ -18,9 +18,6 @@ function Home() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
         <Button onClick={handleRoute3} variant="contained" color="primary">
           Login
         </Button>
@@ -28,7 +25,7 @@ function Home() {
           Go to Route1
         </Button>
         <Button onClick={handleRoute2} variant="contained" color="primary">
-          Go to Route2
+          Sign Up
         </Button>
       </div>
       <p className="read-the-docs">

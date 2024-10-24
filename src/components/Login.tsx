@@ -1,9 +1,8 @@
 import { Box, Button, Typography, Paper } from "@mui/material";
-import { useForm } from "react-hook-form";
-import FormTextInput from "../common/Form/FormTextInput";
+import { FieldValues, useForm } from "react-hook-form";
+import FormTextInput from "./common/Form/FormTextInput";
 
-interface FormValues {
-  fullName: string;
+interface FormValues extends FieldValues {
   email: string;
   password: string;
 }
@@ -12,10 +11,10 @@ const emailRegex = new RegExp(
   /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
 );
 
-const Signup = () => {
+const Login = () => {
   const { control, handleSubmit, setError } = useForm<FormValues>({
+    mode: "onChange",
     defaultValues: {
-      fullName: "",
       email: "",
       password: "",
     },
@@ -23,10 +22,9 @@ const Signup = () => {
 
   const onSubmit = (values: FormValues) => {
     if (!emailRegex.test(values.email)) {
-      return setError("email", { type: "custom", message: "Invalid Email" });
+      setError("email", { type: "custom", message: "Invalid Email" });
     }
   };
-
   return (
     <Box
       sx={{
@@ -44,50 +42,43 @@ const Signup = () => {
           variant="h4"
           sx={{ textAlign: "center", marginBottom: "1.5rem" }}
         >
-          Sign Up
+          Login
         </Typography>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <FormTextInput
-            label="Full Name"
-            fullWidth
-            name="fullName"
-            sx={{ marginBottom: 2 }}
-            control={control}
-          />
+        <form onSubmit={handleSubmit((data) => onSubmit(data))}>
           <FormTextInput
             label="Email"
-            name="email"
             required
-            sx={{ marginBottom: 2 }}
             control={control}
+            sx={{ marginBottom: 2 }}
+            name="email"
             fullWidth
           />
           <FormTextInput
             label="Password"
-            sx={{ marginBottom: 2 }}
-            name="password"
             required
-            control={control}
+            sx={{ marginBottom: 2 }}
             type="password"
+            control={control}
+            name="password"
             fullWidth
           />
           <Button
             variant="contained"
-            color="primary"
             type="submit"
+            color="primary"
             fullWidth
             sx={{ padding: "0.75rem" }}
           >
-            Sign Up
+            Login
           </Button>
         </form>
         <Typography
           variant="body2"
           sx={{ textAlign: "center", marginTop: "1rem" }}
         >
-          Already have an account?{" "}
-          <a href="/login" style={{ color: "#ff4081" }}>
-            Login
+          Don't have an account?{" "}
+          <a href="/signup" style={{ color: "#ff4081" }}>
+            Sign Up
           </a>
         </Typography>
       </Paper>
@@ -95,4 +86,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

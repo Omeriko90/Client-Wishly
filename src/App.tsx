@@ -5,8 +5,8 @@ import PublicList from "src/components/Public/PublicList";
 import Admin from "src/routes/Admin";
 import AppHeader from "src/components/AppHeader";
 import { Container } from "@mui/material";
-import Login from "src/components/Public/Login";
-import Signup from "src/components/Public/SignUp";
+import Login from "src/components/Login";
+import Signup from "src/components/SignUp";
 import { useQueryClient } from "react-query";
 import { useEffect } from "react";
 

@@ -2,12 +2,19 @@ import Wish from "src/types/wish";
 import api from "./api";
 import List from "src/types/list";
 import { AxiosResponse } from "axios";
+import User from "src/types/user";
 
 interface ApiType {
   getUserLists: (userId: string) => Promise<AxiosResponse<List[]>>;
   getList: (listId: string) => Promise<AxiosResponse<List>>;
   getListWishes: (listId: string) => Promise<AxiosResponse<Wish[]>>;
   addList: (newList: List) => Promise<AxiosResponse<List>>;
+  signUp: (
+    fullName: string,
+    email: string,
+    password: string
+  ) => Promise<AxiosResponse<User>>;
+  login: (email: string, password: string) => Promise<AxiosResponse<User>>;
   updateListDetails: (
     listId: string,
     list: List
@@ -28,6 +35,9 @@ interface ApiType {
 }
 
 const Api: ApiType = {
+  signUp: (fullName, email, password) =>
+    api.post("/user", { fullName, email, password }),
+  login: (email, password) => api.post("/user/login", { email, password }),
   getUserLists: (userId: string) => api.get(`/user/${userId}/lists`),
   getList: (listId: string) => api.get(`/list/${listId}`),
   getListWishes: (listId: string) => api.get(`/list/${listId}/wishes`),

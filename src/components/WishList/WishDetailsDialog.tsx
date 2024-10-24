@@ -34,7 +34,7 @@ function WishDetailsDialog(props: WishDetailsDialogProps) {
     <Dialog
       maxWidth="md"
       fullScreen={isMobile}
-      fullWidth={isMobile}
+      fullWidth
       open
       onClose={onClose}
     >
