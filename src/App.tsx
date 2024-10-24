@@ -7,7 +7,6 @@ import AppHeader from "src/components/AppHeader";
 import { Container } from "@mui/material";
 import { useQueryClient } from "react-query";
 import { useEffect } from "react";
-import PublicRoutes from "./routes/PublicRoutes";
 
 function App() {
   const queryClient = useQueryClient();
@@ -39,10 +38,9 @@ function App() {
       >
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/public/*" element={<PublicList />} />
             <Route path="/admin/*" element={<Admin />} />
-            <Route path="/*" element={<PublicRoutes />} />
+            <Route path="/" element={<Home />} />
           </Routes>
         </BrowserRouter>
       </Container>

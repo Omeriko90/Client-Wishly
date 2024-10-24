@@ -1,6 +1,8 @@
 import reactLogo from "../assets/react.svg";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
+import Login from "src/components/Login";
+import Signup from "src/components/SignUp";
 
 function Home() {
   const navigate = useNavigate();
@@ -18,6 +20,10 @@ function Home() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
         <Button onClick={handleRoute3} variant="contained" color="primary">
           Login
         </Button>
