@@ -6,7 +6,7 @@ function Home() {
   const navigate = useNavigate();
 
   const handleRoute1 = () => navigate("/public/list/66c98a6b262f8f3e5840e608");
-  const handleRoute2 = () => navigate("/signUp");
+  const handleRoute2 = () => navigate("/signup");
   const handleRoute3 = () => navigate("/login");
 
   return (
