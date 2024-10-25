@@ -40,8 +40,8 @@ function App() {
       >
         <BrowserRouter>
           <Routes>
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/public/*" element={<PublicList />} />
             <Route path="/admin/*" element={<Admin />} />
             <Route path="/" element={<Home />} />
