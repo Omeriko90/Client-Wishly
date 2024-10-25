@@ -4,6 +4,8 @@ import AddList from "src/components/Admin/AddList";
 import EditList from "src/components/Admin/EditList";
 import ListDetails from "src/components/Admin/ListDetails";
 import UserEventsList from "src/components/Admin/UserEventsList";
+import Login from "src/components/Login";
+import Signup from "src/components/SignUp";
 
 function Admin() {
   return (
@@ -17,6 +19,8 @@ function Admin() {
       }}
     >
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/list/add" element={<AddList />} />
         <Route path="/list/:id" element={<ListDetails />} />
         <Route path="/list/:id/edit" element={<EditList />} />
