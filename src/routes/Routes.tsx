@@ -13,7 +13,7 @@ function AppRoutes() {
       <Route path="/public/*" exact component={Public} />
       <Route path="/admin/*" exact component={Admin} />
       <Route path="/" exact component={Home} />
-      <Redirect path="*" to="/" />
+      <Redirect from="*" to="/" />
     </Switch>
   );
 }
