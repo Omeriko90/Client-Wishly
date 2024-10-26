@@ -1,5 +1,5 @@
 import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import useGetList from "src/hooks/useGetList";
 import ListForm from "src/components/common/ListForm";
 import WishList from "src/components/WishList";
@@ -18,7 +18,7 @@ import useIsMobile from "src/hooks/useIsMobile";
 
 function EditList() {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
+  const history = useHistory();
   const id = pathname.split("/")[3];
   const { data: list } = useGetList(id);
   const isMobile = useIsMobile();
@@ -30,7 +30,7 @@ function EditList() {
 
   const handleCloseDialog = () => setOpenDialog(false);
   const handleAddClick = () => setOpenDialog(true);
-  const backToList = () => navigate(`/admin/list/${id}`);
+  const backToList = () => history.goBack();
 
   const handleWishesChange = async (
     data: FormValues,

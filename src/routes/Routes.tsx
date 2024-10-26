@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Home from "src/components/Home";
 import Login from "src/components/Login";
 import Signup from "src/components/SignUp";
@@ -7,15 +7,14 @@ import Public from "src/routes/Public";
 
 function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/public/*" element={<Public />} />
-        <Route path="/admin/*" element={<Admin />} />
-        <Route path="*" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <Switch>
+      <Route path="/login" exact component={Login} />
+      <Route path="/signup" exact component={Signup} />
+      <Route path="/public/*" exact component={Public} />
+      <Route path="/admin/*" exact component={Admin} />
+      <Route path="/" exact component={Home} />
+      <Redirect path="*" to="/" />
+    </Switch>
   );
 }
 

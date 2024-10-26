@@ -7,11 +7,9 @@ import AppRoutes from "src/routes/Routes";
 
 function App() {
   const queryClient = useQueryClient();
-
   const handleWindowSizeChange = () => {
     queryClient.setQueryData("isMobile", window.innerWidth <= 768);
   };
-
   useEffect(() => {
     handleWindowSizeChange();
     window.addEventListener("resize", handleWindowSizeChange);

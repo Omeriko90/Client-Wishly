@@ -1,13 +1,14 @@
 import reactLogo from "../assets/react.svg";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Button } from "@mui/material";
 
 function Home() {
-  const navigate = useNavigate();
+  const history = useHistory();
 
-  const handleRoute1 = () => navigate("/public/list/66c98a6b262f8f3e5840e608");
-  const handleRoute2 = () => navigate("/signup");
-  const handleRoute3 = () => navigate("/login");
+  const handleRoute1 = () =>
+    history.push("/public/list/66c98a6b262f8f3e5840e608");
+  const handleRoute2 = () => history.push("/signup");
+  const handleRoute3 = () => history.push("/login");
 
   return (
     <>
@@ -18,7 +19,7 @@ function Home() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <Button onClick={handleRoute3} variant="contained" color="primary">
+        <Button onClick={handleRoute3} variant="outlined" color="primary">
           Login
         </Button>
         <Button onClick={handleRoute1} variant="contained" color="primary">

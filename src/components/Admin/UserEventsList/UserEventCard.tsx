@@ -8,23 +8,23 @@ import {
 } from "@mui/material";
 import useGetList from "src/hooks/useGetList";
 import "src/components/Admin/UserEventsList/index.css";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 interface UserEventCardProps {
   listId: string;
 }
 
 function UserEventCard(props: UserEventCardProps) {
   const { listId } = props;
-  const navigate = useNavigate();
+  const history = useHistory();
   const { data: list } = useGetList(listId);
   const { title, description } = list || {};
 
   const handleEditClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    navigate(`/admin/list/${listId}/edit`);
+    history.push(`/admin/list/${listId}/edit`);
   };
 
-  const handleViewClick = () => navigate(`/admin/list/${listId}`);
+  const handleViewClick = () => history.push(`/admin/list/${listId}`);
 
   return (
     <Card raised id={"card"} onClick={handleViewClick}>

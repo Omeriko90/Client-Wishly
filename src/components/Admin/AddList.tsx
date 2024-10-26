@@ -1,14 +1,14 @@
 import { Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import ListForm from "../common/ListForm";
 import List from "src/types/list";
 import useAddList from "src/hooks/useAddList";
 import { toast, ToastContainer } from "react-toastify";
 
 function AddList() {
-  const navigate = useNavigate();
+  const history = useHistory();
 
-  const handleBack = () => navigate("/admin/lists");
+  const handleBack = () => history.push("/admin/lists");
   const handleError = (error: Error) => {
     toast.dark(
       `Failed to create list because of ${error.message}. Please try again later`,
@@ -21,7 +21,7 @@ function AddList() {
     toast.dark("List was created successfully", {
       position: "top-center",
     });
-    setTimeout(() => navigate(`/admin/list/${newList._id}`), 2000);
+    setTimeout(() => history.push(`/admin/list/${newList._id}`), 2000);
   };
 
   const { mutate: addList } = useAddList(handleError, handleSuccess);

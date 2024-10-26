@@ -1,15 +1,15 @@
 import { Box, Button, Typography } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import WishList from "../WishList";
 import useGetList from "src/hooks/useGetList";
 
 function PublicList() {
   const { pathname } = useLocation();
-  const navigate = useNavigate();
+  const history = useHistory();
   const id = pathname.split("/")[3];
   const { data: list } = useGetList(id);
 
-  const handleBack = () => navigate("/");
+  const handleBack = () => history.goBack();
 
   return (
     <Box

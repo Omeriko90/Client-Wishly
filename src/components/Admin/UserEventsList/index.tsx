@@ -4,18 +4,18 @@ import { useState } from "react";
 import useGetUserLists from "src/hooks/useGetUserLists";
 import { default as ListType } from "src/types/list";
 import UserEventCard from "./UserEventCard";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function UserEventsList() {
   const { data: lists } = useGetUserLists();
-  const navigate = useNavigate();
+  const history = useHistory();
   const [search, setSearch] = useState("");
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
   const handleAddClick = () => {
-    navigate("/admin/list/add");
+    history.push("/admin/list/add");
   };
 
   const userLists = search

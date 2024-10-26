@@ -1,5 +1,5 @@
 import { Box, Theme } from "@mui/material";
-import { Route, Routes } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import PublicList from "src/components/Public/PublicList";
 
 function Public() {
@@ -13,9 +13,9 @@ function Public() {
         height: "100%",
       }}
     >
-      <Routes>
-        <Route path="/list/:id" element={<PublicList />} />
-      </Routes>
+      <Switch>
+        <Route path="/list/:id" component={PublicList} />
+      </Switch>
     </Box>
   );
 }
