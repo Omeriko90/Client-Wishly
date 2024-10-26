@@ -11,7 +11,7 @@ import { createBrowserHistory } from "history";
 
 const queryClient = new QueryClient();
 const theme = createTheme();
-const history = createBrowserHistory();
+const history = createBrowserHistory({ basename: "/" });
 
 createRoot(document.getElementById("root")!).render(
   <Router history={history}>
