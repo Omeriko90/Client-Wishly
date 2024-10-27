@@ -8,11 +8,11 @@ import Public from "src/routes/Public";
 function AppRoutes() {
   return (
     <Switch>
-      <Route path="/login" exact component={Login} />
-      <Route path="/signup" exact component={Signup} />
-      <Route path="/public/*" exact component={Public} />
-      <Route path="/admin/*" exact component={Admin} />
-      <Route path="/" exact component={Home} />
+      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/public/*" component={Public} />
+      <Route path="/admin/*" component={Admin} />
+      <Route path="/" component={Home} />
       <Redirect from="*" to="/" />
     </Switch>
   );

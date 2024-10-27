@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/",
+  base: "./",
   server: {
     host: "0.0.0.0",
   },
@@ -13,7 +13,7 @@ export default defineConfig({
     manifest: true,
     rollupOptions: {
       // overwrite default .html entry
-      input: "./src/main.tsx",
+      input: "./index.html",
     },
   },
   resolve: {
