@@ -2,7 +2,7 @@ import "src/App.css";
 import AppHeader from "src/components/AppHeader";
 import { Container } from "@mui/material";
 import { useQueryClient } from "react-query";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import AppRoutes from "src/routes/Routes";
 
 function App() {
@@ -31,7 +31,9 @@ function App() {
           alignItems: "center",
         }}
       >
-        <AppRoutes />
+        <Suspense fallback={<div>Loading...</div>}>
+          <AppRoutes />
+        </Suspense>
       </Container>
     </>
   );
