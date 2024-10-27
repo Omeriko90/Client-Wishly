@@ -6,6 +6,14 @@ export default defineConfig({
   plugins: [react()],
   base: "./",
   server: {
+    proxy: {
+      // string shorthand
+      "/*": {
+        target: "https://client-wishly.onrender.com",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/*/, ""),
+      },
+    },
     host: "0.0.0.0",
   },
   build: {
